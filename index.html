@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BrewMaster — Your Personal Coffee Mentor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  /* ── TOKEN SYSTEM ── */
+  :root {
+    --espresso:     #1a0d05;
+    --dark-roast:   #2a1508;
+    --medium-roast: #3d1f0a;
+    --crema:        #e8c97a;
+    --gold:         #c9973a;
+    --brass:        #a07828;
+    --cream:        #f5e9c8;
+    --steam:        rgba(232,201,122,0.08);
+    --ink:          #f0dfa8;
+    --muted:        rgba(232,201,122,0.45);
+
+    --serif-display: 'Playfair Display', Georgia, serif;
+    --serif-body:    'Crimson Text', Georgia, serif;
+    --mono:          'DM Mono', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--espresso);
+    color: var(--cream);
+    font-family: var(--serif-body);
+    font-size: 18px;
+    line-height: 1.7;
+    min-height: 100vh;
+    /* Subtle wood grain texture via repeating gradient */
+    background-image:
+      repeating-linear-gradient(
+        92deg,
+        transparent,
+        transparent 120px,
+        rgba(255,255,255,0.012) 120px,
+        rgba(255,255,255,0.012) 121px
+      ),
+      repeating-linear-gradient(
+        180deg,
+        transparent,
+        transparent 80px,
+        rgba(0,0,0,0.06) 80px,
+        rgba(0,0,0,0.06) 81px
+      );
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(26,13,5,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,151,58,0.2);
+    padding: 0 clamp(1.5rem, 5vw, 4rem);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .nav-logo {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    border: 1px solid rgba(201,151,58,0.5);
+    object-fit: cover;
+  }
+
+  .nav-name {
+    font-family: var(--serif-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--crema);
+    letter-spacing: 0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: var(--serif-body);
+    font-size: 0.9rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--crema); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 6rem clamp(1.5rem, 6vw, 5rem) 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Radial glow behind logo */
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -52%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(ellipse, rgba(201,151,58,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(201,151,58,0.35);
+    padding: 0.35em 1.1em;
+    border-radius: 2px;
+    margin-bottom: 2.5rem;
+    display: inline-block;
+  }
+
+  .hero-logo {
+    width: clamp(120px, 22vw, 180px);
+    height: clamp(120px, 22vw, 180px);
+    border-radius: clamp(22px, 4vw, 36px);
+    border: 2px solid rgba(201,151,58,0.5);
+    box-shadow:
+      0 0 0 8px rgba(201,151,58,0.07),
+      0 24px 60px rgba(0,0,0,0.7);
+    margin-bottom: 2.5rem;
+    object-fit: cover;
+    display: block;
+  }
+
+  .hero h1 {
+    font-family: var(--serif-display);
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    background: linear-gradient(135deg, #f0d98a 0%, #c9973a 40%, #e8c97a 70%, #a07828 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1.2rem;
+  }
+
+  .hero-tagline {
+    font-family: var(--serif-body);
+    font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+    font-style: italic;
+    color: var(--ink);
+    opacity: 0.75;
+    max-width: 520px;
+    margin: 0 auto 3rem;
+    line-height: 1.6;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: linear-gradient(135deg, #c9973a, #a07828, #c9973a);
+    color: var(--espresso);
+    font-family: var(--serif-display);
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.04em;
+    padding: 0.9em 2.2em;
+    border-radius: 4px;
+    text-decoration: none;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.15);
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+
+  .hero-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 32px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.15);
+  }
+
+  /* ── DIVIDER ── */
+  .rule {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 0 clamp(1.5rem, 6vw, 5rem);
+    margin: 0;
+  }
+
+  .rule::before, .rule::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201,151,58,0.35), transparent);
+  }
+
+  .rule-glyph {
+    font-size: 1.2rem;
+    color: var(--gold);
+    opacity: 0.6;
+  }
+
+  /* ── FEATURES ── */
+  .features {
+    padding: 6rem clamp(1.5rem, 6vw, 5rem);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+  }
+
+  .section-title {
+    font-family: var(--serif-display);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    color: var(--crema);
+    margin-bottom: 3.5rem;
+    line-height: 1.2;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5px;
+    background: rgba(201,151,58,0.15);
+    border: 1px solid rgba(201,151,58,0.15);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .feature-card {
+    background: var(--dark-roast);
+    padding: 2rem 1.8rem;
+    position: relative;
+    transition: background 0.2s;
+  }
+
+  .feature-card:hover { background: var(--medium-roast); }
+
+  .feature-icon {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    display: block;
+    line-height: 1;
+  }
+
+  .feature-card h3 {
+    font-family: var(--serif-display);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--crema);
+    margin-bottom: 0.5rem;
+  }
+
+  .feature-card p {
+    font-size: 0.92rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── PREMIUM ── */
+  .premium {
+    padding: 5rem clamp(1.5rem, 6vw, 5rem);
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .premium-card {
+    background: var(--dark-roast);
+    border: 1px solid rgba(201,151,58,0.3);
+    border-radius: 8px;
+    padding: 3.5rem 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .premium-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(201,151,58,0.08) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .price-tag {
+    font-family: var(--serif-display);
+    font-size: clamp(3rem, 8vw, 5rem);
+    font-weight: 900;
+    background: linear-gradient(135deg, #f0d98a, #c9973a, #e8c97a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin: 1rem 0 0.3rem;
+  }
+
+  .price-note {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2rem;
+  }
+
+  .premium-list {
+    list-style: none;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    text-align: left;
+    margin-bottom: 2.5rem;
+  }
+
+  .premium-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 1rem;
+    color: var(--ink);
+  }
+
+  .premium-list li::before {
+    content: '✦';
+    color: var(--gold);
+    font-size: 0.6rem;
+    flex-shrink: 0;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid rgba(201,151,58,0.15);
+    padding: 3rem clamp(1.5rem, 6vw, 5rem);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .footer-brand {
+    font-family: var(--serif-display);
+    font-size: 1rem;
+    color: var(--muted);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-family: var(--serif-body);
+    font-size: 0.88rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--crema); }
+
+  .footer-copy {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: rgba(201,151,58,0.3);
+    width: 100%;
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  /* ── STEAM ANIMATION ── */
+  .steam-wrap {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    height: 48px;
+    margin-bottom: 2rem;
+    opacity: 0.5;
+  }
+
+  .steam-line {
+    width: 2px;
+    border-radius: 2px;
+    background: linear-gradient(to top, transparent, var(--crema), transparent);
+    animation: rise 2.4s ease-in-out infinite;
+    transform-origin: bottom;
+  }
+
+  .steam-line:nth-child(2) { animation-delay: 0.4s; height: 38px; margin-top: 10px; }
+  .steam-line:nth-child(3) { animation-delay: 0.8s; }
+
+  @keyframes rise {
+    0%, 100% { opacity: 0; transform: scaleY(0.4) translateY(10px); }
+    50%       { opacity: 1; transform: scaleY(1)   translateY(-6px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .steam-line { animation: none; opacity: 0.3; }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    .premium-card { padding: 2.5rem 1.5rem; }
+    footer { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="index.html">
+    <img class="nav-logo" src="BrewMaster.jpg" alt="BrewMaster">
+    <span class="nav-name">BrewMaster</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="privacy.html">Privacy</a></li>
+    <li><a href="terms.html">Terms</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="hero-badge">iOS App · Food &amp; Drink</span>
+  <img class="hero-logo" src="BrewMaster.jpg" alt="BrewMaster app icon">
+  <div class="steam-wrap">
+    <div class="steam-line" style="height:44px"></div>
+    <div class="steam-line"></div>
+    <div class="steam-line" style="height:44px"></div>
+  </div>
+  <h1>BrewMaster</h1>
+  <p class="hero-tagline">Your personal coffee mentor — guide, journal, and barista in one beautiful app.</p>
+  <a class="hero-cta" href="https://apps.apple.com/app/brewmaster/id000000000" target="_blank">
+    ☕ &nbsp;Download on the App Store
+  </a>
+</section>
+
+<div class="rule"><span class="rule-glyph">✦</span></div>
+
+<!-- FEATURES -->
+<section class="features">
+  <p class="section-eyebrow">What's inside</p>
+  <h2 class="section-title">Everything a coffee lover needs</h2>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <span class="feature-icon">☕</span>
+      <h3>16 Iconic Drinks</h3>
+      <p>Full origin stories, recipes, and step-by-step brew guides for every classic — from Espresso to Turkish Coffee.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">📓</span>
+      <h3>Brew Journal</h3>
+      <p>Rate your cups 1–10. Log beans, grind, temperature, dose, yield, extraction time, and flavor notes.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🌿</span>
+      <h3>Bean Tracker</h3>
+      <p>Track roast date, freshness window, and how much is left. Never brew a stale bean again.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🌍</span>
+      <h3>8 Bean Origins</h3>
+      <p>Ethiopia, Colombia, Kenya, Brazil and more — altitude, process, flavor profile, and the story behind each origin.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🔐</span>
+      <h3>Barista Secrets</h3>
+      <p>10 professional techniques hidden behind a points system. Earn them by logging brews.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🛠</span>
+      <h3>Fix It Guide</h3>
+      <p>Bitter? Sour? Weak? Diagnose your brew problems and get exact adjustments to fix them.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">📊</span>
+      <h3>Taste Profile</h3>
+      <p>Your personal flavor fingerprint — built from your logs, showing your dominant notes across 8 flavor categories.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">⏱</span>
+      <h3>Brew Timer</h3>
+      <p>Guided step-by-step timers for every drink. Never guess when to stop the pour or pull the shot.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">☁️</span>
+      <h3>iCloud Sync</h3>
+      <p>Your journal and beans sync automatically across all your Apple devices.</p>
+    </div>
+  </div>
+</section>
+
+<div class="rule"><span class="rule-glyph">✦</span></div>
+
+<!-- PREMIUM -->
+<section class="premium">
+  <p class="section-eyebrow">Premium</p>
+  <div class="premium-card">
+    <p style="font-family:var(--serif-display);font-size:1.1rem;color:var(--muted);font-style:italic;">One cup. One price.</p>
+    <div class="price-tag">$4.99</div>
+    <p class="price-note">One-time purchase · No subscription · Yours forever</p>
+    <ul class="premium-list">
+      <li>Unlimited Journal entries</li>
+      <li>Bean Tracker</li>
+      <li>Taste Profile</li>
+      <li>Brew Timer</li>
+      <li>Coffee Map</li>
+      <li>Bean Scanner</li>
+      <li>Themes</li>
+    </ul>
+    <a class="hero-cta" href="https://apps.apple.com/app/brewmaster/id000000000" target="_blank">
+      Get BrewMaster
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-brand">BrewMaster</span>
+  <ul class="footer-links">
+    <li><a href="privacy.html">Privacy Policy</a></li>
+    <li><a href="terms.html">Terms of Use</a></li>
+    <li><a href="mailto:support@brewmaster.app">Support</a></li>
+  </ul>
+  <p class="footer-copy">© 2026 BrewMaster · All rights reserved.</p>
+</footer>
+
+</body>
+</html>

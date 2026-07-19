@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — BrewMaster</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --espresso:     #1a0d05;
+    --dark-roast:   #2a1508;
+    --medium-roast: #3d1f0a;
+    --crema:        #e8c97a;
+    --gold:         #c9973a;
+    --brass:        #a07828;
+    --cream:        #f5e9c8;
+    --ink:          #f0dfa8;
+    --muted:        rgba(232,201,122,0.45);
+    --serif-display:'Playfair Display', Georgia, serif;
+    --serif-body:   'Crimson Text', Georgia, serif;
+    --mono:         'DM Mono', monospace;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--espresso);
+    background-image:
+      repeating-linear-gradient(92deg, transparent, transparent 120px, rgba(255,255,255,0.012) 120px, rgba(255,255,255,0.012) 121px),
+      repeating-linear-gradient(180deg, transparent, transparent 80px, rgba(0,0,0,0.06) 80px, rgba(0,0,0,0.06) 81px);
+    color: var(--cream);
+    font-family: var(--serif-body);
+    font-size: 18px;
+    line-height: 1.75;
+  }
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(26,13,5,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,151,58,0.2);
+    padding: 0 clamp(1.5rem,5vw,4rem);
+    display: flex; align-items: center; justify-content: space-between; height: 64px;
+  }
+  .nav-brand { display:flex; align-items:center; gap:10px; text-decoration:none; }
+  .nav-logo { width:36px; height:36px; border-radius:8px; border:1px solid rgba(201,151,58,0.5); object-fit:cover; }
+  .nav-name { font-family:var(--serif-display); font-size:1.1rem; font-weight:700; color:var(--crema); }
+  .nav-links { display:flex; gap:2rem; list-style:none; }
+  .nav-links a { font-family:var(--serif-body); font-size:0.9rem; color:var(--muted); text-decoration:none; letter-spacing:0.08em; text-transform:uppercase; transition:color 0.2s; }
+  .nav-links a:hover { color:var(--crema); }
+
+  .page-header {
+    padding: 5rem clamp(1.5rem,6vw,5rem) 3rem;
+    max-width: 760px;
+    margin: 0 auto;
+    border-bottom: 1px solid rgba(201,151,58,0.12);
+  }
+  .page-eyebrow {
+    font-family: var(--mono); font-size:0.68rem; letter-spacing:0.2em;
+    text-transform:uppercase; color:var(--gold); margin-bottom:0.8rem;
+  }
+  .page-header h1 {
+    font-family: var(--serif-display); font-size: clamp(2rem,5vw,3.2rem);
+    font-weight:900; color:var(--crema); line-height:1.1; margin-bottom:0.8rem;
+  }
+  .page-date {
+    font-family:var(--mono); font-size:0.72rem; color:var(--muted); letter-spacing:0.1em;
+  }
+
+  .content {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 3.5rem clamp(1.5rem,6vw,5rem) 6rem;
+  }
+
+  .policy-block {
+    margin-bottom: 2.5rem;
+    padding: 2rem 2rem 2rem 1.8rem;
+    background: var(--dark-roast);
+    border-left: 2px solid var(--gold);
+    border-radius: 0 4px 4px 0;
+  }
+
+  .policy-block h2 {
+    font-family: var(--serif-display);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--crema);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+  }
+
+  .policy-block h2 .num {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+  }
+
+  .policy-block p {
+    color: var(--ink);
+    font-size: 0.98rem;
+    opacity: 0.85;
+    line-height: 1.75;
+  }
+
+  .highlight-box {
+    background: var(--medium-roast);
+    border: 1px solid rgba(201,151,58,0.2);
+    border-radius: 4px;
+    padding: 1.4rem 1.6rem;
+    margin-top: 1rem;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+    line-height: 1.8;
+  }
+
+  .contact-row {
+    display: flex; align-items: center; gap: 0.7rem;
+    font-family: var(--mono); font-size: 0.8rem;
+    color: var(--crema); margin-top: 0.8rem;
+  }
+  .contact-row a { color: var(--crema); }
+
+  footer {
+    border-top: 1px solid rgba(201,151,58,0.15);
+    padding: 2.5rem clamp(1.5rem,6vw,5rem);
+    display: flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1rem;
+  }
+  .footer-brand { font-family:var(--serif-display); font-size:1rem; color:var(--muted); }
+  .footer-links { display:flex; gap:2rem; list-style:none; }
+  .footer-links a { font-family:var(--serif-body); font-size:0.88rem; color:var(--muted); text-decoration:none; transition:color 0.2s; }
+  .footer-links a:hover { color:var(--crema); }
+  .footer-copy { font-family:var(--mono); font-size:0.7rem; color:rgba(201,151,58,0.3); width:100%; text-align:center; margin-top:0.5rem; }
+
+  @media (max-width:600px) { .nav-links { display:none; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="index.html">
+    <img class="nav-logo" src="BrewMaster.jpg" alt="BrewMaster">
+    <span class="nav-name">BrewMaster</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="privacy.html">Privacy</a></li>
+    <li><a href="terms.html">Terms</a></li>
+  </ul>
+</nav>
+
+<header class="page-header">
+  <p class="page-eyebrow">Legal</p>
+  <h1>Privacy Policy</h1>
+  <p class="page-date">Last updated: July 2026</p>
+</header>
+
+<main class="content">
+
+  <div class="policy-block">
+    <h2><span class="num">01</span> Introduction</h2>
+    <p>Welcome to BrewMaster. We are committed to protecting your privacy. This Privacy Policy explains how we handle information when you use our iOS application.</p>
+  </div>
+
+  <div class="policy-block">
+    <h2><span class="num">02</span> Data We Collect</h2>
+    <p>BrewMaster stores all your data — journal entries, bean logs, flavor notes, and preferences — locally on your device and optionally in your personal iCloud account. We do not collect, store, or have access to any of your personal data on our servers.</p>
+    <div class="highlight-box">
+      ✦ &nbsp;No user accounts required<br>
+      ✦ &nbsp;No data sent to our servers<br>
+      ✦ &nbsp;No analytics or tracking<br>
+      ✦ &nbsp;No advertising
+    </div>
+  </div>
+
+  <div class="policy-block">
+    <h2><span class="num">03</span> iCloud Sync</h2>
+    <p>If you are signed into iCloud, your data is synced via Apple's iCloud Key-Value Store. This data is private to your Apple ID and is governed by Apple's Privacy Policy. We never have access to your iCloud data.</p>
+  </div>
+
+  <div class="policy-block">
+    <h2><span class="num">04</span> Camera Access</h2>
+    <p>The Bean Scanner feature requests camera access to read barcodes on coffee bags. Camera access is used only when you actively open the scanner. Images are never stored or transmitted — only the barcode value is read.</p>
+  </div>
+
+  <div class="policy-block">
+    <h2><span class="num">05</span> Photo Library</h2>
+    <p>When you attach a photo to a journal entry, it is stored locally on your device within the app's protected storage. Photos are never uploaded to any server and are only accessible within BrewMaster.</p>
+  </div>
+
+  <div class="policy-block">
+    <h2><span class="num">06</span> Notifications</h2>
+    <p>If you enable daily brew reminders, notifications are scheduled locally on your device using iOS's notification system. No notification data is sent to any server. You can disable notifications at any time in the app settings or your device Settings.</p>
+  </div>
+
+  <div class="policy-block">
+    <h2><span class="num">07</span> Purchases</h2>
+    <p>In-app purchases are handled entirely by Apple's App Store and StoreKit. We do not process or store any payment information. Purchase receipts are verified directly with Apple's servers.</p>
+  </div>
+
+  <div class="policy-block">
+    <h2><span class="num">08</span> Third-Party Services</h2>
+    <p>BrewMaster does not use any third-party analytics, advertising, or tracking SDKs. We do not share any data with third parties.</p>
+  </div>
+
+  <div class="policy-block">
+    <h2><span class="num">09</span> Children's Privacy</h2>
+    <p>BrewMaster is not directed at children under 13. We do not knowingly collect any information from children.</p>
+  </div>
+
+  <div class="policy-block">
+    <h2><span class="num">10</span> Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time. Any changes will be reflected on this page with an updated date. Continued use of the app after changes constitutes acceptance of the new policy.</p>
+  </div>
+
+  <div class="policy-block">
+    <h2><span class="num">11</span> Contact</h2>
+    <p>If you have any questions about this Privacy Policy or your data, please contact us:</p>
+    <div class="contact-row">✦ &nbsp;<a href="mailto:support@brewmaster.app">support@brewmaster.app</a></div>
+    <div class="contact-row"></div>
+  </div>
+
+</main>
+
+<footer>
+  <span class="footer-brand">BrewMaster</span>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="terms.html">Terms of Use</a></li>
+    <li><a href="mailto:support@brewmaster.app">Support</a></li>
+  </ul>
+  <p class="footer-copy">© 2026 BrewMaster · All rights reserved.</p>
+</footer>
+
+</body>
+</html>
