@@ -4,236 +4,182 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Privacy Policy — BrewMaster</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<meta name="description" content="How BrewMaster handles your data. Everything stays on your device and in your own iCloud.">
+<meta name="theme-color" content="#17120f">
+<link rel="icon" href="BrewMaster.jpg">
+<link rel="apple-touch-icon" href="BrewMaster.jpg">
 <style>
   :root {
-    --espresso:     #1a0d05;
-    --dark-roast:   #2a1508;
-    --medium-roast: #3d1f0a;
-    --crema:        #e8c97a;
-    --gold:         #c9973a;
-    --brass:        #a07828;
-    --cream:        #f5e9c8;
-    --ink:          #f0dfa8;
-    --muted:        rgba(232,201,122,0.45);
-    --serif-display:'Playfair Display', Georgia, serif;
-    --serif-body:   'Crimson Text', Georgia, serif;
-    --mono:         'DM Mono', monospace;
+    --bg: #17120f; --bg-2: #1c1612; --card: #2d2420; --card-2: #261f1a;
+    --border: rgba(255,255,255,0.07); --accent: #d9b48f; --on-accent: #1f1712;
+    --text: #f7f2eb; --text-2: #b8a89c;
+    --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body {
-    background: var(--espresso);
-    background-image:
-      repeating-linear-gradient(92deg, transparent, transparent 120px, rgba(255,255,255,0.012) 120px, rgba(255,255,255,0.012) 121px),
-      repeating-linear-gradient(180deg, transparent, transparent 80px, rgba(0,0,0,0.06) 80px, rgba(0,0,0,0.06) 81px);
-    color: var(--cream);
-    font-family: var(--serif-body);
-    font-size: 18px;
-    line-height: 1.75;
-  }
-  nav {
-    position: sticky; top: 0; z-index: 100;
-    background: rgba(26,13,5,0.96);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(201,151,58,0.2);
-    padding: 0 clamp(1.5rem,5vw,4rem);
-    display: flex; align-items: center; justify-content: space-between; height: 64px;
-  }
-  .nav-brand { display:flex; align-items:center; gap:10px; text-decoration:none; }
-  .nav-logo { width:36px; height:36px; border-radius:8px; border:1px solid rgba(201,151,58,0.5); object-fit:cover; }
-  .nav-name { font-family:var(--serif-display); font-size:1.1rem; font-weight:700; color:var(--crema); }
-  .nav-links { display:flex; gap:2rem; list-style:none; }
-  .nav-links a { font-family:var(--serif-body); font-size:0.9rem; color:var(--muted); text-decoration:none; letter-spacing:0.08em; text-transform:uppercase; transition:color 0.2s; }
-  .nav-links a:hover { color:var(--crema); }
+  body { background: linear-gradient(180deg, var(--bg), var(--bg-2) 50%, var(--bg)); color: var(--text); font-family: var(--font); font-size: 17px; line-height: 1.65; -webkit-font-smoothing: antialiased; min-height: 100vh; }
+  a { color: var(--accent); }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 clamp(1.25rem, 5vw, 2.5rem); }
+  .narrow { max-width: 780px; }
 
-  .page-header {
-    padding: 5rem clamp(1.5rem,6vw,5rem) 3rem;
-    max-width: 760px;
-    margin: 0 auto;
-    border-bottom: 1px solid rgba(201,151,58,0.12);
-  }
-  .page-eyebrow {
-    font-family: var(--mono); font-size:0.68rem; letter-spacing:0.2em;
-    text-transform:uppercase; color:var(--gold); margin-bottom:0.8rem;
-  }
-  .page-header h1 {
-    font-family: var(--serif-display); font-size: clamp(2rem,5vw,3.2rem);
-    font-weight:900; color:var(--crema); line-height:1.1; margin-bottom:0.8rem;
-  }
-  .page-date {
-    font-family:var(--mono); font-size:0.72rem; color:var(--muted); letter-spacing:0.1em;
-  }
+  nav { position: sticky; top: 0; z-index: 50; background: rgba(23,18,15,0.85); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 1rem; }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); }
+  .brand img { width: 36px; height: 36px; border-radius: 10px; object-fit: cover; }
+  .brand span { font-weight: 700; font-size: 1.05rem; }
+  .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--text-2); font-size: .95rem; font-weight: 500; }
+  .nav-links a:hover, .nav-links a[aria-current="page"] { color: var(--text); }
 
-  .content {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 3.5rem clamp(1.5rem,6vw,5rem) 6rem;
-  }
+  .page-head { padding: clamp(3rem, 8vw, 5rem) 0 2rem; }
+  .eyebrow { font-size: .8rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: .8rem; }
+  .page-head h1 { font-size: clamp(2.2rem, 5.5vw, 3.4rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: .6rem; }
+  .date { color: var(--text-2); font-size: .92rem; }
 
-  .policy-block {
-    margin-bottom: 2.5rem;
-    padding: 2rem 2rem 2rem 1.8rem;
-    background: var(--dark-roast);
-    border-left: 2px solid var(--gold);
-    border-radius: 0 4px 4px 0;
-  }
+  .summary { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.6rem; }
+  .pill { font-size: .85rem; font-weight: 600; padding: .45rem .9rem; border-radius: 999px; background: var(--card); border: 1px solid var(--border); color: var(--text-2); }
 
-  .policy-block h2 {
-    font-family: var(--serif-display);
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: var(--crema);
-    margin-bottom: 0.75rem;
-    display: flex;
-    align-items: baseline;
-    gap: 0.6rem;
-  }
+  main { padding-bottom: 5rem; }
+  .block { background: linear-gradient(160deg, var(--card), var(--card-2)); border: 1px solid var(--border); border-radius: 24px; padding: 1.6rem 1.7rem; margin-bottom: 14px; }
+  .block h2 { font-size: 1.12rem; font-weight: 700; margin-bottom: .5rem; display: flex; gap: .7rem; align-items: baseline; }
+  .block h2 .num { font-size: .78rem; font-weight: 700; color: var(--accent); }
+  .block p, .block li { color: var(--text-2); font-size: .98rem; }
+  .block p + p { margin-top: .6rem; }
+  .block ul { margin: .5rem 0 0 1.2rem; }
+  .block li { margin-bottom: .3rem; }
 
-  .policy-block h2 .num {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    color: var(--gold);
-    letter-spacing: 0.1em;
-  }
+  footer { border-top: 1px solid var(--border); padding: 2.5rem 0 3rem; }
+  .foot { display: flex; flex-wrap: wrap; gap: 1.2rem; justify-content: space-between; align-items: center; }
+  .foot-links { display: flex; flex-wrap: wrap; gap: 1.5rem; list-style: none; }
+  .foot-links a { text-decoration: none; color: var(--text-2); font-size: .92rem; }
+  .foot-links a:hover { color: var(--text); }
+  .copy { width: 100%; text-align: center; color: var(--text-2); opacity: .7; font-size: .82rem; margin-top: 1.2rem; }
 
-  .policy-block p {
-    color: var(--ink);
-    font-size: 0.98rem;
-    opacity: 0.85;
-    line-height: 1.75;
-  }
-
-  .highlight-box {
-    background: var(--medium-roast);
-    border: 1px solid rgba(201,151,58,0.2);
-    border-radius: 4px;
-    padding: 1.4rem 1.6rem;
-    margin-top: 1rem;
-    font-family: var(--mono);
-    font-size: 0.78rem;
-    color: var(--gold);
-    letter-spacing: 0.05em;
-    line-height: 1.8;
-  }
-
-  .contact-row {
-    display: flex; align-items: center; gap: 0.7rem;
-    font-family: var(--mono); font-size: 0.8rem;
-    color: var(--crema); margin-top: 0.8rem;
-  }
-  .contact-row a { color: var(--crema); }
-
-  footer {
-    border-top: 1px solid rgba(201,151,58,0.15);
-    padding: 2.5rem clamp(1.5rem,6vw,5rem);
-    display: flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1rem;
-  }
-  .footer-brand { font-family:var(--serif-display); font-size:1rem; color:var(--muted); }
-  .footer-links { display:flex; gap:2rem; list-style:none; }
-  .footer-links a { font-family:var(--serif-body); font-size:0.88rem; color:var(--muted); text-decoration:none; transition:color 0.2s; }
-  .footer-links a:hover { color:var(--crema); }
-  .footer-copy { font-family:var(--mono); font-size:0.7rem; color:rgba(201,151,58,0.3); width:100%; text-align:center; margin-top:0.5rem; }
-
-  @media (max-width:600px) { .nav-links { display:none; } }
+  @media (max-width: 520px) { .nav-links { gap: 1rem; } .nav-links a { font-size: .88rem; } .brand span { display: none; } }
 </style>
 </head>
 <body>
 
 <nav>
-  <a class="nav-brand" href="index.html">
-    <img class="nav-logo" src="BrewMaster.jpg" alt="BrewMaster">
-    <span class="nav-name">BrewMaster</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="privacy.html">Privacy</a></li>
-    <li><a href="terms.html">Terms</a></li>
-  </ul>
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html"><img src="BrewMaster.jpg" alt="BrewMaster icon"><span>BrewMaster</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="privacy.html" aria-current="page">Privacy</a></li>
+      <li><a href="terms.html">Terms</a></li>
+    </ul>
+  </div>
 </nav>
 
-<header class="page-header">
-  <p class="page-eyebrow">Legal</p>
+<header class="wrap narrow page-head">
+  <p class="eyebrow">Legal</p>
   <h1>Privacy Policy</h1>
-  <p class="page-date">Last updated: July 2026</p>
+  <p class="date">Last updated: November 26, 2026</p>
+  <div class="summary">
+    <span class="pill">No account needed</span>
+    <span class="pill">No data on our servers</span>
+    <span class="pill">No tracking or analytics</span>
+    <span class="pill">No ads</span>
+  </div>
 </header>
 
-<main class="content">
+<main class="wrap narrow">
 
-  <div class="policy-block">
-    <h2><span class="num">01</span> Introduction</h2>
-    <p>Welcome to BrewMaster. We are committed to protecting your privacy. This Privacy Policy explains how we handle information when you use our iOS application.</p>
+  <div class="block">
+    <h2><span class="num">01</span>Introduction</h2>
+    <p>BrewMaster is an iPhone app made by chmays.app. We care about your privacy. This policy explains what information the app uses and how it is handled.</p>
   </div>
 
-  <div class="policy-block">
-    <h2><span class="num">02</span> Data We Collect</h2>
-    <p>BrewMaster stores all your data — journal entries, bean logs, flavor notes, and preferences — locally on your device and optionally in your personal iCloud account. We do not collect, store, or have access to any of your personal data on our servers.</p>
-    <div class="highlight-box">
-      ✦ &nbsp;No user accounts required<br>
-      ✦ &nbsp;No data sent to our servers<br>
-      ✦ &nbsp;No analytics or tracking<br>
-      ✦ &nbsp;No advertising
-    </div>
+  <div class="block">
+    <h2><span class="num">02</span>Data We Collect</h2>
+    <p>We do not collect any personal data. Everything you create in BrewMaster, including journal entries, ratings, beans, flavor notes, photos, café visits, favorites and settings, is stored on your device and, if you use iCloud, in your own private iCloud account.</p>
+    <p>We do not run any servers for BrewMaster, and we have no access to your data.</p>
   </div>
 
-  <div class="policy-block">
-    <h2><span class="num">03</span> iCloud Sync</h2>
-    <p>If you are signed into iCloud, your data is synced via Apple's iCloud Key-Value Store. This data is private to your Apple ID and is governed by Apple's Privacy Policy. We never have access to your iCloud data.</p>
+  <div class="block">
+    <h2><span class="num">03</span>iCloud Sync</h2>
+    <p>If you are signed in to iCloud, your journal and beans are synced through Apple's iCloud Key-Value Store. This data is private to your Apple ID and is covered by Apple's Privacy Policy. We cannot see it.</p>
   </div>
 
-  <div class="policy-block">
-    <h2><span class="num">04</span> Camera Access</h2>
-    <p>The Bean Scanner feature requests camera access to read barcodes on coffee bags. Camera access is used only when you actively open the scanner. Images are never stored or transmitted — only the barcode value is read.</p>
+  <div class="block">
+    <h2><span class="num">04</span>Location</h2>
+    <p>BrewMaster only asks for your location when you log a brew at a café and tap "Use my location". Your location is used once, on your device, to find cafés near you through Apple Maps, so you can pick the right one for your Café Map.</p>
+    <ul>
+      <li>Location is only used while you are using the app ("When In Use"). It is never tracked in the background.</li>
+      <li>Only the location of the café you choose is saved with that journal entry, on your device and in your iCloud.</li>
+      <li>You can always search for a café by name instead, without giving location access.</li>
+      <li>You can turn location access off anytime in iPhone Settings.</li>
+    </ul>
+    <p>Café searches are handled by Apple Maps and covered by Apple's Privacy Policy.</p>
   </div>
 
-  <div class="policy-block">
-    <h2><span class="num">05</span> Photo Library</h2>
-    <p>When you attach a photo to a journal entry, it is stored locally on your device within the app's protected storage. Photos are never uploaded to any server and are only accessible within BrewMaster.</p>
+  <div class="block">
+    <h2><span class="num">05</span>Camera</h2>
+    <p>The Bean Scanner uses the camera to read the barcode on a coffee bag. The camera is only active while the scanner is open. No images are saved or sent anywhere. Only the barcode number is read.</p>
   </div>
 
-  <div class="policy-block">
-    <h2><span class="num">06</span> Notifications</h2>
-    <p>If you enable daily brew reminders, notifications are scheduled locally on your device using iOS's notification system. No notification data is sent to any server. You can disable notifications at any time in the app settings or your device Settings.</p>
+  <div class="block">
+    <h2><span class="num">06</span>Photos</h2>
+    <p>If you add a photo to a journal entry, it is saved in BrewMaster's private storage on your device. Photos are never uploaded to any server.</p>
   </div>
 
-  <div class="policy-block">
-    <h2><span class="num">07</span> Purchases</h2>
-    <p>In-app purchases are handled entirely by Apple's App Store and StoreKit. We do not process or store any payment information. Purchase receipts are verified directly with Apple's servers.</p>
+  <div class="block">
+    <h2><span class="num">07</span>Notifications</h2>
+    <p>BrewMaster can send you a daily reminder with the Drink of the Day and a reminder before your coffee beans run out. All notifications are created on your device. No notification data is sent to any server. You can turn them off anytime in the app or in iPhone Settings.</p>
   </div>
 
-  <div class="policy-block">
-    <h2><span class="num">08</span> Third-Party Services</h2>
-    <p>BrewMaster does not use any third-party analytics, advertising, or tracking SDKs. We do not share any data with third parties.</p>
+  <div class="block">
+    <h2><span class="num">08</span>Home Screen Widget</h2>
+    <p>The BrewMaster widget shows the Drink of the Day and your brewing streak. To do this, the app shares a small amount of data (your streak, number of brews and the drink list) with the widget through a private App Group on your device. This data never leaves your iPhone.</p>
   </div>
 
-  <div class="policy-block">
-    <h2><span class="num">09</span> Children's Privacy</h2>
-    <p>BrewMaster is not directed at children under 13. We do not knowingly collect any information from children.</p>
+  <div class="block">
+    <h2><span class="num">09</span>Sharing</h2>
+    <p>When you share a brew card, the image is created on your device and sent only where you choose through the iOS share sheet. We do not receive a copy.</p>
   </div>
 
-  <div class="policy-block">
-    <h2><span class="num">10</span> Changes to This Policy</h2>
-    <p>We may update this Privacy Policy from time to time. Any changes will be reflected on this page with an updated date. Continued use of the app after changes constitutes acceptance of the new policy.</p>
+  <div class="block">
+    <h2><span class="num">10</span>Purchases</h2>
+    <p>BrewMaster Pro is a one-time in-app purchase handled entirely by Apple through the App Store. We never see or store your payment details. Purchases are verified directly with Apple.</p>
   </div>
 
-  <div class="policy-block">
-    <h2><span class="num">11</span> Contact</h2>
-    <p>If you have any questions about this Privacy Policy or your data, please contact us:</p>
-    <div class="contact-row">✦ &nbsp;<a href="mailto:support@chmays.app">support@chmays.app</a></div>
-    <div class="contact-row"></div>
+  <div class="block">
+    <h2><span class="num">11</span>Third-Party Services</h2>
+    <p>BrewMaster does not use any third-party analytics, advertising or tracking tools, and we do not share or sell any data. The only outside services the app uses are Apple's own: iCloud, Apple Maps, the App Store and notifications.</p>
+  </div>
+
+  <div class="block">
+    <h2><span class="num">12</span>Deleting Your Data</h2>
+    <p>You can delete any journal entry or bean bag inside the app. Deleting the app removes all data stored on your device. To remove synced data, you can manage BrewMaster's iCloud data in iPhone Settings under your Apple ID, then iCloud.</p>
+  </div>
+
+  <div class="block">
+    <h2><span class="num">13</span>Children's Privacy</h2>
+    <p>BrewMaster is not directed at children under 13, and we do not knowingly collect any information from children.</p>
+  </div>
+
+  <div class="block">
+    <h2><span class="num">14</span>Changes to This Policy</h2>
+    <p>We may update this policy from time to time. Changes will be posted on this page with a new date. If you keep using the app after a change, it means you accept the updated policy.</p>
+  </div>
+
+  <div class="block">
+    <h2><span class="num">15</span>Contact</h2>
+    <p>Questions about this policy or your data? Email us at <a href="mailto:support@chmays.app">support@chmays.app</a>.</p>
   </div>
 
 </main>
 
 <footer>
-  <span class="footer-brand">BrewMaster</span>
-  <ul class="footer-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="terms.html">Terms of Use</a></li>
-    <li><a href="mailto:support@chmays.app">Support</a></li>
-  </ul>
-  <p class="footer-copy">© 2026 BrewMaster · All rights reserved.</p>
+  <div class="wrap foot">
+    <a class="brand" href="index.html"><img src="BrewMaster.jpg" alt=""><span>BrewMaster</span></a>
+    <ul class="foot-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="terms.html">Terms of Use</a></li>
+      <li><a href="mailto:support@chmays.app">Support</a></li>
+    </ul>
+    <p class="copy">© 2026 BrewMaster by chmays.app · All rights reserved.</p>
+  </div>
 </footer>
 
 </body>

@@ -4,570 +4,346 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BrewMaster — Your Personal Coffee Mentor</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<meta name="description" content="BrewMaster is your personal coffee mentor for iPhone. 16 drink guides, brew journal, Brew Calculator, Café Map, bean tracker and barista secrets.">
+<meta name="theme-color" content="#17120f">
+<meta property="og:title" content="BrewMaster — Your Personal Coffee Mentor">
+<meta property="og:description" content="16 drink guides, brew journal, Brew Calculator, Café Map and bean tracker. One app for every cup.">
+<meta property="og:image" content="BrewMaster.jpg">
+<link rel="icon" href="BrewMaster.jpg">
+<link rel="apple-touch-icon" href="BrewMaster.jpg">
 
 <style>
-  /* ── TOKEN SYSTEM ── */
   :root {
-    --espresso:     #1a0d05;
-    --dark-roast:   #2a1508;
-    --medium-roast: #3d1f0a;
-    --crema:        #e8c97a;
-    --gold:         #c9973a;
-    --brass:        #a07828;
-    --cream:        #f5e9c8;
-    --steam:        rgba(232,201,122,0.08);
-    --ink:          #f0dfa8;
-    --muted:        rgba(232,201,122,0.45);
-
-    --serif-display: 'Playfair Display', Georgia, serif;
-    --serif-body:    'Crimson Text', Georgia, serif;
-    --mono:          'DM Mono', monospace;
+    --bg:        #17120f;
+    --bg-2:      #1c1612;
+    --card:      #2d2420;
+    --card-2:    #261f1a;
+    --border:    rgba(255,255,255,0.07);
+    --accent:    #d9b48f;
+    --on-accent: #1f1712;
+    --text:      #f7f2eb;
+    --text-2:    #b8a89c;
+    --radius:    24px;
+    --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
 
   body {
-    background: var(--espresso);
-    color: var(--cream);
-    font-family: var(--serif-body);
-    font-size: 18px;
-    line-height: 1.7;
+    background: linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 50%, var(--bg) 100%);
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
     min-height: 100vh;
-    /* Subtle wood grain texture via repeating gradient */
-    background-image:
-      repeating-linear-gradient(
-        92deg,
-        transparent,
-        transparent 120px,
-        rgba(255,255,255,0.012) 120px,
-        rgba(255,255,255,0.012) 121px
-      ),
-      repeating-linear-gradient(
-        180deg,
-        transparent,
-        transparent 80px,
-        rgba(0,0,0,0.06) 80px,
-        rgba(0,0,0,0.06) 81px
-      );
   }
 
-  /* ── NAV ── */
+  a { color: inherit; }
+  img { display: block; max-width: 100%; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 clamp(1.25rem, 5vw, 2.5rem); }
+
+  /* NAV */
   nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(26,13,5,0.96);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(201,151,58,0.2);
-    padding: 0 clamp(1.5rem, 5vw, 4rem);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 64px;
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(23,18,15,0.85);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
   }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 1rem; }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .brand img { width: 36px; height: 36px; border-radius: 10px; object-fit: cover; }
+  .brand span { font-weight: 700; font-size: 1.05rem; }
+  .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--text-2); font-size: 0.95rem; font-weight: 500; transition: color .2s; }
+  .nav-links a:hover, .nav-links a[aria-current="page"] { color: var(--text); }
 
-  .nav-brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
+  /* BUTTONS */
+  .btn {
+    display: inline-flex; align-items: center; gap: .6rem;
+    background: var(--accent); color: var(--on-accent);
+    font-weight: 600; font-size: 1rem; text-decoration: none;
+    padding: .95rem 1.6rem; border-radius: 999px;
+    box-shadow: 0 10px 30px rgba(217,180,143,0.18);
+    transition: transform .15s, box-shadow .15s;
   }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(217,180,143,0.26); }
+  .btn svg { width: 20px; height: 20px; }
+  .btn-ghost { background: var(--card); color: var(--text); box-shadow: none; border: 1px solid var(--border); }
+  .btn-ghost:hover { box-shadow: none; }
 
-  .nav-logo {
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
-    border: 1px solid rgba(201,151,58,0.5);
-    object-fit: cover;
-  }
-
-  .nav-name {
-    font-family: var(--serif-display);
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--crema);
-    letter-spacing: 0.02em;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-  }
-
-  .nav-links a {
-    font-family: var(--serif-body);
-    font-size: 0.9rem;
-    color: var(--muted);
-    text-decoration: none;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
-
-  .nav-links a:hover { color: var(--crema); }
-
-  /* ── HERO ── */
-  .hero {
-    min-height: 100svh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 6rem clamp(1.5rem, 6vw, 5rem) 4rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  /* Radial glow behind logo */
+  /* HERO */
+  .hero { padding: clamp(3.5rem, 9vw, 7rem) 0 clamp(3rem, 7vw, 5rem); position: relative; overflow: hidden; }
   .hero::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -52%);
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(ellipse, rgba(201,151,58,0.12) 0%, transparent 70%);
+    content: ''; position: absolute; top: 10%; right: -10%;
+    width: 520px; height: 520px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(217,180,143,0.14), transparent 70%);
     pointer-events: none;
   }
+  .hero-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 3rem; align-items: center; position: relative; }
+  .eyebrow { font-size: .8rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+  .hero h1 { font-size: clamp(2.6rem, 6.5vw, 4.6rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 1.2rem; }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero p.lead { font-size: clamp(1.05rem, 2vw, 1.25rem); color: var(--text-2); max-width: 520px; margin-bottom: 2rem; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: .8rem; align-items: center; }
+  .hero-note { font-size: .88rem; color: var(--text-2); margin-top: 1rem; }
 
-  .hero-badge {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--gold);
-    border: 1px solid rgba(201,151,58,0.35);
-    padding: 0.35em 1.1em;
-    border-radius: 2px;
-    margin-bottom: 2.5rem;
-    display: inline-block;
-  }
-
-  .hero-logo {
-    width: clamp(120px, 22vw, 180px);
-    height: clamp(120px, 22vw, 180px);
-    border-radius: clamp(22px, 4vw, 36px);
-    border: 2px solid rgba(201,151,58,0.5);
-    box-shadow:
-      0 0 0 8px rgba(201,151,58,0.07),
-      0 24px 60px rgba(0,0,0,0.7);
-    margin-bottom: 2.5rem;
+  .hero-art { display: flex; justify-content: center; }
+  .hero-icon {
+    width: clamp(180px, 28vw, 280px); aspect-ratio: 1; border-radius: 22%;
     object-fit: cover;
-    display: block;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 0 1px var(--border);
   }
 
-  .hero h1 {
-    font-family: var(--serif-display);
-    font-size: clamp(2.8rem, 7vw, 5.5rem);
-    font-weight: 900;
-    line-height: 1.05;
-    letter-spacing: -0.01em;
-    background: linear-gradient(135deg, #f0d98a 0%, #c9973a 40%, #e8c97a 70%, #a07828 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 1.2rem;
-  }
+  /* SECTIONS */
+  section.block { padding: clamp(3rem, 7vw, 5rem) 0; }
+  .section-head { margin-bottom: 2.2rem; }
+  .section-head h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; letter-spacing: -0.01em; line-height: 1.15; }
+  .section-head p { color: var(--text-2); margin-top: .6rem; max-width: 560px; }
 
-  .hero-tagline {
-    font-family: var(--serif-body);
-    font-size: clamp(1.1rem, 2.2vw, 1.4rem);
-    font-style: italic;
-    color: var(--ink);
-    opacity: 0.75;
-    max-width: 520px;
-    margin: 0 auto 3rem;
-    line-height: 1.6;
-  }
-
-  .hero-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    background: linear-gradient(135deg, #c9973a, #a07828, #c9973a);
-    color: var(--espresso);
-    font-family: var(--serif-display);
-    font-weight: 700;
-    font-size: 1rem;
-    letter-spacing: 0.04em;
-    padding: 0.9em 2.2em;
-    border-radius: 4px;
-    text-decoration: none;
-    box-shadow: 0 6px 24px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.15);
-    transition: transform 0.15s, box-shadow 0.15s;
-  }
-
-  .hero-cta:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 32px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.15);
-  }
-
-  /* ── DIVIDER ── */
-  .rule {
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-    padding: 0 clamp(1.5rem, 6vw, 5rem);
-    margin: 0;
-  }
-
-  .rule::before, .rule::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(201,151,58,0.35), transparent);
-  }
-
-  .rule-glyph {
-    font-size: 1.2rem;
-    color: var(--gold);
-    opacity: 0.6;
-  }
-
-  /* ── FEATURES ── */
-  .features {
-    padding: 6rem clamp(1.5rem, 6vw, 5rem);
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
-  .section-eyebrow {
-    font-family: var(--mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 0.8rem;
-  }
-
-  .section-title {
-    font-family: var(--serif-display);
-    font-size: clamp(1.8rem, 4vw, 2.8rem);
-    font-weight: 700;
-    color: var(--crema);
-    margin-bottom: 3.5rem;
-    line-height: 1.2;
-  }
-
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5px;
-    background: rgba(201,151,58,0.15);
-    border: 1px solid rgba(201,151,58,0.15);
-    border-radius: 4px;
-    overflow: hidden;
-  }
-
-  .feature-card {
-    background: var(--dark-roast);
-    padding: 2rem 1.8rem;
+  /* FEATURES */
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+  .card {
+    background: linear-gradient(160deg, var(--card), var(--card-2));
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.6rem;
     position: relative;
-    transition: background 0.2s;
   }
-
-  .feature-card:hover { background: var(--medium-roast); }
-
-  .feature-icon {
-    font-size: 1.8rem;
+  .icon {
+    width: 46px; height: 46px; border-radius: 50%;
+    display: grid; place-items: center;
+    background: rgba(217,180,143,0.14); color: var(--accent);
     margin-bottom: 1rem;
-    display: block;
-    line-height: 1;
   }
-
-  .feature-card h3 {
-    font-family: var(--serif-display);
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: var(--crema);
-    margin-bottom: 0.5rem;
+  .icon svg { width: 22px; height: 22px; }
+  .card h3 { font-size: 1.08rem; font-weight: 700; margin-bottom: .35rem; }
+  .card p { font-size: .95rem; color: var(--text-2); line-height: 1.55; }
+  .tag {
+    position: absolute; top: 1.2rem; right: 1.2rem;
+    font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+    padding: .3rem .7rem; border-radius: 999px;
   }
+  .tag-free { background: rgba(140,200,140,0.15); color: #9fd49f; }
+  .tag-pro  { background: rgba(217,180,143,0.16); color: var(--accent); }
 
-  .feature-card p {
-    font-size: 0.92rem;
-    color: var(--muted);
-    line-height: 1.6;
+  /* PRO */
+  .pro {
+    background: linear-gradient(160deg, var(--card), var(--card-2));
+    border: 1px solid var(--border);
+    border-radius: 32px;
+    padding: clamp(2rem, 5vw, 3.5rem);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: center;
   }
+  .pro h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; line-height: 1.15; margin-bottom: .8rem; }
+  .pro h2 em { font-style: normal; color: var(--accent); }
+  .pro p { color: var(--text-2); margin-bottom: 1.6rem; }
+  .pills { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.6rem; }
+  .pill { font-size: .85rem; font-weight: 600; padding: .45rem .9rem; border-radius: 999px; background: var(--bg); border: 1px solid var(--border); color: var(--text-2); }
+  .checklist { list-style: none; display: grid; gap: .7rem; }
+  .checklist li { display: flex; gap: .7rem; align-items: flex-start; font-size: .98rem; }
+  .checklist li svg { flex-shrink: 0; width: 20px; height: 20px; color: var(--accent); margin-top: 3px; }
 
-  /* ── PREMIUM ── */
-  .premium {
-    padding: 5rem clamp(1.5rem, 6vw, 5rem);
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
+  /* FOOTER */
+  footer { border-top: 1px solid var(--border); padding: 2.5rem 0 3rem; }
+  .foot { display: flex; flex-wrap: wrap; gap: 1.2rem; justify-content: space-between; align-items: center; }
+  .foot-links { display: flex; flex-wrap: wrap; gap: 1.5rem; list-style: none; }
+  .foot-links a { text-decoration: none; color: var(--text-2); font-size: .92rem; }
+  .foot-links a:hover { color: var(--text); }
+  .copy { width: 100%; text-align: center; color: var(--text-2); opacity: .7; font-size: .82rem; margin-top: 1.2rem; }
+
+  @media (max-width: 820px) {
+    .hero-grid, .pro { grid-template-columns: 1fr; }
+    .hero-art { order: -1; justify-content: flex-start; }
+    .hero-icon { width: 130px; }
   }
-
-  .premium-card {
-    background: var(--dark-roast);
-    border: 1px solid rgba(201,151,58,0.3);
-    border-radius: 8px;
-    padding: 3.5rem 3rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .premium-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 50% 0%, rgba(201,151,58,0.08) 0%, transparent 65%);
-    pointer-events: none;
-  }
-
-  .price-tag {
-    font-family: var(--serif-display);
-    font-size: clamp(3rem, 8vw, 5rem);
-    font-weight: 900;
-    background: linear-gradient(135deg, #f0d98a, #c9973a, #e8c97a);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    line-height: 1;
-    margin: 1rem 0 0.3rem;
-  }
-
-  .price-note {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 2rem;
-  }
-
-  .premium-list {
-    list-style: none;
-    display: inline-flex;
-    flex-direction: column;
-    gap: 0.7rem;
-    text-align: left;
-    margin-bottom: 2.5rem;
-  }
-
-  .premium-list li {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    font-size: 1rem;
-    color: var(--ink);
-  }
-
-  .premium-list li::before {
-    content: '✦';
-    color: var(--gold);
-    font-size: 0.6rem;
-    flex-shrink: 0;
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    border-top: 1px solid rgba(201,151,58,0.15);
-    padding: 3rem clamp(1.5rem, 6vw, 5rem);
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.5rem;
-  }
-
-  .footer-brand {
-    font-family: var(--serif-display);
-    font-size: 1rem;
-    color: var(--muted);
-  }
-
-  .footer-links {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-  }
-
-  .footer-links a {
-    font-family: var(--serif-body);
-    font-size: 0.88rem;
-    color: var(--muted);
-    text-decoration: none;
-    letter-spacing: 0.05em;
-    transition: color 0.2s;
-  }
-
-  .footer-links a:hover { color: var(--crema); }
-
-  .footer-copy {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    color: rgba(201,151,58,0.3);
-    width: 100%;
-    text-align: center;
-    margin-top: 1rem;
-  }
-
-  /* ── STEAM ANIMATION ── */
-  .steam-wrap {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    height: 48px;
-    margin-bottom: 2rem;
-    opacity: 0.5;
-  }
-
-  .steam-line {
-    width: 2px;
-    border-radius: 2px;
-    background: linear-gradient(to top, transparent, var(--crema), transparent);
-    animation: rise 2.4s ease-in-out infinite;
-    transform-origin: bottom;
-  }
-
-  .steam-line:nth-child(2) { animation-delay: 0.4s; height: 38px; margin-top: 10px; }
-  .steam-line:nth-child(3) { animation-delay: 0.8s; }
-
-  @keyframes rise {
-    0%, 100% { opacity: 0; transform: scaleY(0.4) translateY(10px); }
-    50%       { opacity: 1; transform: scaleY(1)   translateY(-6px); }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .steam-line { animation: none; opacity: 0.3; }
-  }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 600px) {
-    .nav-links { display: none; }
-    .premium-card { padding: 2.5rem 1.5rem; }
-    footer { flex-direction: column; align-items: flex-start; }
+  @media (max-width: 520px) {
+    .nav-links { gap: 1rem; }
+    .nav-links a { font-size: .88rem; }
+    .brand span { display: none; }
   }
 </style>
 </head>
 
 <body>
 
-<!-- NAV -->
 <nav>
-  <a class="nav-brand" href="index.html">
-    <img class="nav-logo" src="BrewMaster.jpg" alt="BrewMaster">
-    <span class="nav-name">BrewMaster</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="privacy.html">Privacy</a></li>
-    <li><a href="terms.html">Terms</a></li>
-  </ul>
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html">
+      <img src="BrewMaster.jpg" alt="BrewMaster icon">
+      <span>BrewMaster</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#pro">Pro</a></li>
+      <li><a href="privacy.html">Privacy</a></li>
+      <li><a href="terms.html">Terms</a></li>
+    </ul>
+  </div>
 </nav>
 
 <!-- HERO -->
-<section class="hero">
-  <span class="hero-badge">iOS App · Food &amp; Drink</span>
-  <img class="hero-logo" src="BrewMaster.jpg" alt="BrewMaster app icon">
-  <div class="steam-wrap">
-    <div class="steam-line" style="height:44px"></div>
-    <div class="steam-line"></div>
-    <div class="steam-line" style="height:44px"></div>
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">iPhone app · Food &amp; Drink</p>
+      <h1>What are we<br><em>brewing today?</em></h1>
+      <p class="lead">BrewMaster is your personal coffee mentor. Explore 16 iconic drinks, get the perfect brew ratio, keep a journal of every cup, and track your beans and favorite cafés.</p>
+      <div class="hero-actions">
+        <!-- App Store link -->
+        <a class="btn" href="https://apps.apple.com/app/brewmaster-app/id6792447389" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.37 12.6c-.02-2.24 1.83-3.32 1.91-3.37-1.04-1.52-2.66-1.73-3.24-1.75-1.38-.14-2.69.81-3.39.81-.7 0-1.78-.79-2.92-.77-1.5.02-2.89.87-3.66 2.21-1.56 2.71-.4 6.72 1.12 8.92.75 1.07 1.63 2.28 2.79 2.24 1.12-.05 1.54-.72 2.89-.72 1.35 0 1.73.72 2.91.7 1.2-.02 1.97-1.09 2.7-2.17.85-1.24 1.2-2.45 1.22-2.51-.03-.01-2.33-.9-2.35-3.56zM14.15 6.02c.62-.75 1.03-1.78.92-2.82-.89.04-1.97.59-2.6 1.34-.57.66-1.07 1.72-.94 2.73.99.08 2-.5 2.62-1.25z"/></svg>
+          Download on the App Store
+        </a>
+        <a class="btn btn-ghost" href="#features">See features</a>
+      </div>
+      <p class="hero-note">All 16 drink guides are free. Pro is a one-time purchase, with no subscription.</p>
+    </div>
+    <div class="hero-art">
+      <img class="hero-icon" src="BrewMaster.jpg" alt="BrewMaster app icon">
+    </div>
   </div>
-  <h1>BrewMaster</h1>
-  <p class="hero-tagline">Your personal coffee mentor — guide, journal, and barista in one beautiful app.</p>
-  <a class="hero-cta" href="https://apps.apple.com/app/brewmaster/id000000000" target="_blank">
-    ☕ &nbsp;Download on the App Store
-  </a>
-</section>
-
-<div class="rule"><span class="rule-glyph">✦</span></div>
+</header>
 
 <!-- FEATURES -->
-<section class="features">
-  <p class="section-eyebrow">What's inside</p>
-  <h2 class="section-title">Everything a coffee lover needs</h2>
+<section class="block" id="features">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">What's inside</p>
+      <h2>Everything a coffee lover needs</h2>
+      <p>From your first espresso to a perfect V60, BrewMaster guides every cup.</p>
+    </div>
 
-  <div class="features-grid">
-    <div class="feature-card">
-      <span class="feature-icon">☕</span>
-      <h3>16 Iconic Drinks</h3>
-      <p>Full origin stories, recipes, and step-by-step brew guides for every classic — from Espresso to Turkish Coffee.</p>
-    </div>
-    <div class="feature-card">
-      <span class="feature-icon">📓</span>
-      <h3>Brew Journal</h3>
-      <p>Rate your cups 1–10. Log beans, grind, temperature, dose, yield, extraction time, and flavor notes.</p>
-    </div>
-    <div class="feature-card">
-      <span class="feature-icon">🌿</span>
-      <h3>Bean Tracker</h3>
-      <p>Track roast date, freshness window, and how much is left. Never brew a stale bean again.</p>
-    </div>
-    <div class="feature-card">
-      <span class="feature-icon">🌍</span>
-      <h3>8 Bean Origins</h3>
-      <p>Ethiopia, Colombia, Kenya, Brazil and more — altitude, process, flavor profile, and the story behind each origin.</p>
-    </div>
-    <div class="feature-card">
-      <span class="feature-icon">🔐</span>
-      <h3>Barista Secrets</h3>
-      <p>10 professional techniques hidden behind a points system. Earn them by logging brews.</p>
-    </div>
-    <div class="feature-card">
-      <span class="feature-icon">🛠</span>
-      <h3>Fix It Guide</h3>
-      <p>Bitter? Sour? Weak? Diagnose your brew problems and get exact adjustments to fix them.</p>
-    </div>
-    <div class="feature-card">
-      <span class="feature-icon">📊</span>
-      <h3>Taste Profile</h3>
-      <p>Your personal flavor fingerprint — built from your logs, showing your dominant notes across 8 flavor categories.</p>
-    </div>
-    <div class="feature-card">
-      <span class="feature-icon">⏱</span>
-      <h3>Brew Timer</h3>
-      <p>Guided step-by-step timers for every drink. Never guess when to stop the pour or pull the shot.</p>
-    </div>
-    <div class="feature-card">
-      <span class="feature-icon">☁️</span>
-      <h3>iCloud Sync</h3>
-      <p>Your journal and beans sync automatically across all your Apple devices.</p>
+    <div class="grid">
+      <div class="card">
+        <span class="tag tag-free">Free</span>
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 0 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4z"/><path d="M6 2v2M10 2v2M14 2v2"/></svg></div>
+        <h3>16 Iconic Drinks</h3>
+        <p>Origin stories, ingredients and step-by-step recipes for every classic, from Espresso to Turkish Coffee. Plus a new Drink of the Day every morning.</p>
+      </div>
+
+      <div class="card">
+        <span class="tag tag-pro">Pro</span>
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h5"/></svg></div>
+        <h3>Brew Calculator</h3>
+        <p>Enter your coffee and get the exact water, ratio, temperature, grind and time for 7 brew methods.</p>
+      </div>
+
+      <div class="card">
+        <span class="tag tag-pro">Pro</span>
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg></div>
+        <h3>Brew Journal</h3>
+        <p>Rate every cup 1–10 and log beans, grind, temperature, dose, yield, extraction time and flavor notes.</p>
+      </div>
+
+      <div class="card">
+        <span class="tag tag-pro">Pro</span>
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+        <h3>Café Map</h3>
+        <p>Keep a diary of the cafés you love. Every visit becomes a pin on your own map, with your ratings and drinks.</p>
+      </div>
+
+      <div class="card">
+        <span class="tag tag-pro">Pro</span>
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 4 13c0-5 4-9 13-10 0 9-2 13-6 15"/><path d="M4 20c4-5 7-7 10-9"/></svg></div>
+        <h3>Bean Tracker</h3>
+        <p>Track roast date and freshness. See how many days each bag will last, and get a reminder before you run out.</p>
+      </div>
+
+      <div class="card">
+        <span class="tag tag-pro">Pro</span>
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg></div>
+        <h3>Learn Like a Barista</h3>
+        <p>8 bean origins, 10 barista secrets and a Fix It guide for bitter, sour or weak coffee.</p>
+      </div>
+
+      <div class="card">
+        <span class="tag tag-pro">Pro</span>
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/></svg></div>
+        <h3>Brew Timer</h3>
+        <p>Guided step-by-step timers for every drink, so you know exactly when to stop the pour or pull the shot.</p>
+      </div>
+
+      <div class="card">
+        <span class="tag tag-pro">Pro</span>
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9v9z"/><path d="M12 3a9 9 0 0 1 9 9h-9z"/></svg></div>
+        <h3>Taste Profile</h3>
+        <p>Your personal flavor fingerprint, built from your brews: chocolate, fruity, floral, nutty and more.</p>
+      </div>
+
+      <div class="card">
+        <span class="tag tag-pro">Pro</span>
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M16 6l-4-4-4 4M12 2v14"/></svg></div>
+        <h3>Share Cards</h3>
+        <p>Turn any brew into a beautiful card with your rating and notes, ready for Instagram or your friends.</p>
+      </div>
+
+      <div class="card">
+        <span class="tag tag-pro">Pro</span>
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></svg></div>
+        <h3>Widget &amp; Reminders</h3>
+        <p>The Drink of the Day and your streak on your home screen, plus an optional morning reminder.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></div>
+        <h3>iCloud Sync</h3>
+        <p>Your journal and beans sync privately across your Apple devices through your own iCloud.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div>
+        <h3>English, Danish &amp; Arabic</h3>
+        <p>BrewMaster speaks your language, with full right-to-left support for Arabic.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<div class="rule"><span class="rule-glyph">✦</span></div>
-
-<!-- PREMIUM -->
-<section class="premium">
-  <p class="section-eyebrow">Premium</p>
-  <div class="premium-card">
-    <p style="font-family:var(--serif-display);font-size:1.1rem;color:var(--muted);font-style:italic;">One cup. One price.</p>
-    <div class="price-tag">$4.99</div>
-    <p class="price-note">One-time purchase · No subscription · Yours forever</p>
-    <ul class="premium-list">
-      <li>Unlimited Journal entries</li>
-      <li>Bean Tracker</li>
-      <li>Taste Profile</li>
-      <li>Brew Timer</li>
-      <li>Coffee Map</li>
-      <li>Bean Scanner</li>
-      <li>Themes</li>
-    </ul>
-    <a class="hero-cta" href="https://apps.apple.com/app/brewmaster/id000000000" target="_blank">
-      Get BrewMaster
-    </a>
+<!-- PRO -->
+<section class="block" id="pro">
+  <div class="wrap">
+    <div class="pro">
+      <div>
+        <p class="eyebrow">BrewMaster Pro</p>
+        <h2>One purchase.<br><em>Yours forever.</em></h2>
+        <p>Exploring all 16 drinks and their recipes is free. Pro unlocks everything else with a single one-time purchase. No subscription, no ads.</p>
+        <div class="pills">
+          <span class="pill">One-time purchase</span>
+          <span class="pill">No subscription</span>
+          <span class="pill">No ads</span>
+        </div>
+        <a class="btn" href="https://apps.apple.com/app/brewmaster-app/id6792447389" target="_blank" rel="noopener">Get BrewMaster</a>
+      </div>
+      <ul class="checklist">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Brew journal with unlimited entries</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Brew Calculator for 7 methods</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Café Map</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Bean tracker with reorder reminders</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Origins, barista secrets and Fix It guide</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Brew timer and taste profile</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Share cards, widget and daily reminder</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Coffee map, bean scanner and themes</li>
+      </ul>
+    </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <span class="footer-brand">BrewMaster</span>
-  <ul class="footer-links">
-    <li><a href="privacy.html">Privacy Policy</a></li>
-    <li><a href="terms.html">Terms of Use</a></li>
-    <li><a href="mailto:support@chmays.app">Support</a></li>
-  </ul>
-  <p class="footer-copy">© 2026 BrewMaster · All rights reserved.</p>
+  <div class="wrap foot">
+    <a class="brand" href="index.html">
+      <img src="BrewMaster.jpg" alt="">
+      <span>BrewMaster</span>
+    </a>
+    <ul class="foot-links">
+      <li><a href="privacy.html">Privacy Policy</a></li>
+      <li><a href="terms.html">Terms of Use</a></li>
+      <li><a href="mailto:support@chmays.app">Support</a></li>
+    </ul>
+    <p class="copy">© 2026 BrewMaster by chmays.app · All rights reserved.</p>
+  </div>
 </footer>
 
 </body>

@@ -4,175 +4,155 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Terms of Use — BrewMaster</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<meta name="description" content="Terms of Use for the BrewMaster iPhone app.">
+<meta name="theme-color" content="#17120f">
+<link rel="icon" href="BrewMaster.jpg">
+<link rel="apple-touch-icon" href="BrewMaster.jpg">
 <style>
   :root {
-    --espresso:     #1a0d05;
-    --dark-roast:   #2a1508;
-    --medium-roast: #3d1f0a;
-    --crema:        #e8c97a;
-    --gold:         #c9973a;
-    --brass:        #a07828;
-    --cream:        #f5e9c8;
-    --ink:          #f0dfa8;
-    --muted:        rgba(232,201,122,0.45);
-    --serif-display:'Playfair Display', Georgia, serif;
-    --serif-body:   'Crimson Text', Georgia, serif;
-    --mono:         'DM Mono', monospace;
+    --bg: #17120f; --bg-2: #1c1612; --card: #2d2420; --card-2: #261f1a;
+    --border: rgba(255,255,255,0.07); --accent: #d9b48f; --on-accent: #1f1712;
+    --text: #f7f2eb; --text-2: #b8a89c;
+    --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body {
-    background: var(--espresso);
-    background-image:
-      repeating-linear-gradient(92deg, transparent, transparent 120px, rgba(255,255,255,0.012) 120px, rgba(255,255,255,0.012) 121px),
-      repeating-linear-gradient(180deg, transparent, transparent 80px, rgba(0,0,0,0.06) 80px, rgba(0,0,0,0.06) 81px);
-    color: var(--cream);
-    font-family: var(--serif-body);
-    font-size: 18px;
-    line-height: 1.75;
-  }
-  nav {
-    position: sticky; top: 0; z-index: 100;
-    background: rgba(26,13,5,0.96);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(201,151,58,0.2);
-    padding: 0 clamp(1.5rem,5vw,4rem);
-    display: flex; align-items: center; justify-content: space-between; height: 64px;
-  }
-  .nav-brand { display:flex; align-items:center; gap:10px; text-decoration:none; }
-  .nav-logo { width:36px; height:36px; border-radius:8px; border:1px solid rgba(201,151,58,0.5); object-fit:cover; }
-  .nav-name { font-family:var(--serif-display); font-size:1.1rem; font-weight:700; color:var(--crema); }
-  .nav-links { display:flex; gap:2rem; list-style:none; }
-  .nav-links a { font-family:var(--serif-body); font-size:0.9rem; color:var(--muted); text-decoration:none; letter-spacing:0.08em; text-transform:uppercase; transition:color 0.2s; }
-  .nav-links a:hover { color:var(--crema); }
+  body { background: linear-gradient(180deg, var(--bg), var(--bg-2) 50%, var(--bg)); color: var(--text); font-family: var(--font); font-size: 17px; line-height: 1.65; -webkit-font-smoothing: antialiased; min-height: 100vh; }
+  a { color: var(--accent); }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 clamp(1.25rem, 5vw, 2.5rem); }
+  .narrow { max-width: 780px; }
 
-  .page-header {
-    padding: 5rem clamp(1.5rem,6vw,5rem) 3rem;
-    max-width: 760px; margin: 0 auto;
-    border-bottom: 1px solid rgba(201,151,58,0.12);
-  }
-  .page-eyebrow { font-family:var(--mono); font-size:0.68rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:0.8rem; }
-  .page-header h1 { font-family:var(--serif-display); font-size:clamp(2rem,5vw,3.2rem); font-weight:900; color:var(--crema); line-height:1.1; margin-bottom:0.8rem; }
-  .page-date { font-family:var(--mono); font-size:0.72rem; color:var(--muted); letter-spacing:0.1em; }
+  nav { position: sticky; top: 0; z-index: 50; background: rgba(23,18,15,0.85); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 1rem; }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); }
+  .brand img { width: 36px; height: 36px; border-radius: 10px; object-fit: cover; }
+  .brand span { font-weight: 700; font-size: 1.05rem; }
+  .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--text-2); font-size: .95rem; font-weight: 500; }
+  .nav-links a:hover, .nav-links a[aria-current="page"] { color: var(--text); }
 
-  .content { max-width:760px; margin:0 auto; padding:3.5rem clamp(1.5rem,6vw,5rem) 6rem; }
+  .page-head { padding: clamp(3rem, 8vw, 5rem) 0 2rem; }
+  .eyebrow { font-size: .8rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: .8rem; }
+  .page-head h1 { font-size: clamp(2.2rem, 5.5vw, 3.4rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: .6rem; }
+  .date { color: var(--text-2); font-size: .92rem; }
 
-  .policy-block {
-    margin-bottom: 2.5rem;
-    padding: 2rem 2rem 2rem 1.8rem;
-    background: var(--dark-roast);
-    border-left: 2px solid var(--brass);
-    border-radius: 0 4px 4px 0;
-  }
-  .policy-block h2 {
-    font-family: var(--serif-display); font-size:1.15rem; font-weight:700;
-    color: var(--crema); margin-bottom:0.75rem;
-    display:flex; align-items:baseline; gap:0.6rem;
-  }
-  .policy-block h2 .num { font-family:var(--mono); font-size:0.65rem; color:var(--gold); letter-spacing:0.1em; }
-  .policy-block p { color:var(--ink); font-size:0.98rem; opacity:0.85; line-height:1.75; }
+  main { padding-bottom: 5rem; }
+  .block { background: linear-gradient(160deg, var(--card), var(--card-2)); border: 1px solid var(--border); border-radius: 24px; padding: 1.6rem 1.7rem; margin-bottom: 14px; }
+  .block h2 { font-size: 1.12rem; font-weight: 700; margin-bottom: .5rem; display: flex; gap: .7rem; align-items: baseline; }
+  .block h2 .num { font-size: .78rem; font-weight: 700; color: var(--accent); }
+  .block p { color: var(--text-2); font-size: .98rem; }
+  .block p + p { margin-top: .6rem; }
 
-  .contact-row { display:flex; align-items:center; gap:0.7rem; font-family:var(--mono); font-size:0.8rem; color:var(--crema); margin-top:0.8rem; }
-  .contact-row a { color:var(--crema); }
+  footer { border-top: 1px solid var(--border); padding: 2.5rem 0 3rem; }
+  .foot { display: flex; flex-wrap: wrap; gap: 1.2rem; justify-content: space-between; align-items: center; }
+  .foot-links { display: flex; flex-wrap: wrap; gap: 1.5rem; list-style: none; }
+  .foot-links a { text-decoration: none; color: var(--text-2); font-size: .92rem; }
+  .foot-links a:hover { color: var(--text); }
+  .copy { width: 100%; text-align: center; color: var(--text-2); opacity: .7; font-size: .82rem; margin-top: 1.2rem; }
 
-  footer {
-    border-top: 1px solid rgba(201,151,58,0.15);
-    padding: 2.5rem clamp(1.5rem,6vw,5rem);
-    display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1rem;
-  }
-  .footer-brand { font-family:var(--serif-display); font-size:1rem; color:var(--muted); }
-  .footer-links { display:flex; gap:2rem; list-style:none; }
-  .footer-links a { font-family:var(--serif-body); font-size:0.88rem; color:var(--muted); text-decoration:none; transition:color 0.2s; }
-  .footer-links a:hover { color:var(--crema); }
-  .footer-copy { font-family:var(--mono); font-size:0.7rem; color:rgba(201,151,58,0.3); width:100%; text-align:center; margin-top:0.5rem; }
-
-  @media (max-width:600px) { .nav-links { display:none; } }
+  @media (max-width: 520px) { .nav-links { gap: 1rem; } .nav-links a { font-size: .88rem; } .brand span { display: none; } }
 </style>
 </head>
 <body>
 
 <nav>
-  <a class="nav-brand" href="index.html">
-    <img class="nav-logo" src="BrewMaster.jpg" alt="BrewMaster">
-    <span class="nav-name">BrewMaster</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="privacy.html">Privacy</a></li>
-    <li><a href="terms.html">Terms</a></li>
-  </ul>
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html"><img src="BrewMaster.jpg" alt="BrewMaster icon"><span>BrewMaster</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="privacy.html">Privacy</a></li>
+      <li><a href="terms.html" aria-current="page">Terms</a></li>
+    </ul>
+  </div>
 </nav>
 
-<header class="page-header">
-  <p class="page-eyebrow">Legal</p>
+<header class="wrap narrow page-head">
+  <p class="eyebrow">Legal</p>
   <h1>Terms of Use</h1>
-  <p class="page-date">Last updated: July 2026</p>
+  <p class="date">Last updated: November 26, 2026</p>
 </header>
 
-<main class="content">
+<main class="wrap narrow">
 
-  <div class="policy-block">
-    <h2><span class="num">01</span> Acceptance of Terms</h2>
-    <p>By downloading or using BrewMaster, you agree to be bound by these Terms of Use. If you do not agree to these terms, please do not download or use the app.</p>
+  <div class="block">
+    <h2><span class="num">01</span>Acceptance of Terms</h2>
+    <p>By downloading or using BrewMaster, you agree to these Terms of Use. If you do not agree, please do not download or use the app. Apple's standard <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener">End User License Agreement (EULA)</a> also applies.</p>
   </div>
 
-  <div class="policy-block">
-    <h2><span class="num">02</span> License</h2>
-    <p>BrewMaster grants you a limited, non-exclusive, non-transferable, revocable license to use the app for your personal, non-commercial purposes. You may not copy, modify, distribute, sell, or lease any part of our app or its content.</p>
+  <div class="block">
+    <h2><span class="num">02</span>License</h2>
+    <p>chmays.app gives you a limited, personal, non-exclusive, non-transferable license to use BrewMaster on Apple devices you own or control, for personal and non-commercial use. You may not copy, modify, distribute, sell or lease any part of the app or its content.</p>
   </div>
 
-  <div class="policy-block">
-    <h2><span class="num">03</span> User Content</h2>
-    <p>All journal entries, ratings, notes, photos, and other content you create in BrewMaster belongs to you. We do not claim any ownership over content you create in the app. Your data is stored on your device and optionally in your personal iCloud account.</p>
+  <div class="block">
+    <h2><span class="num">03</span>Your Content</h2>
+    <p>Everything you create in BrewMaster, including journal entries, ratings, notes, photos and café visits, belongs to you. Your content is stored on your device and, if you use iCloud, in your own iCloud account. We do not claim any ownership of it.</p>
   </div>
 
-  <div class="policy-block">
-    <h2><span class="num">04</span> In-App Purchases</h2>
-    <p>BrewMaster offers a one-time premium upgrade at $4.99 (or local equivalent). All purchases are processed by Apple through the App Store. Purchases are non-refundable except as required by applicable law or Apple's own refund policies. Premium access is tied to your Apple ID and can be restored on any device signed into the same account.</p>
+  <div class="block">
+    <h2><span class="num">04</span>Free and Pro Features</h2>
+    <p>All 16 drink guides and their recipes are free. BrewMaster Pro is a one-time in-app purchase that unlocks all other features. The price is shown in the App Store in your local currency before you buy.</p>
+    <p>All purchases are processed by Apple. Refunds are handled by Apple under its own policies and applicable law. Pro is linked to your Apple ID and can be restored on any device signed in to the same account using "Restore Purchase".</p>
+    <p>We may add, change or improve features over time. Features available in the app may change between versions.</p>
   </div>
 
-  <div class="policy-block">
-    <h2><span class="num">05</span> Prohibited Use</h2>
-    <p>You agree not to misuse BrewMaster. You may not attempt to reverse engineer, decompile, or extract source code from the app. You may not use the app for any unlawful purpose or in any way that violates these terms.</p>
+  <div class="block">
+    <h2><span class="num">05</span>Location and Maps</h2>
+    <p>The Café Map uses Apple Maps to search for cafés. Café names, addresses and map data come from Apple and may not always be complete or correct.</p>
   </div>
 
-  <div class="policy-block">
-    <h2><span class="num">06</span> Intellectual Property</h2>
-    <p>All content included in BrewMaster — including the app design, graphics, text, recipes, guides, and coffee content — is the property of BrewMaster and is protected by applicable intellectual property laws. The BrewMaster name and logo are proprietary.</p>
+  <div class="block">
+    <h2><span class="num">06</span>Coffee Guidance</h2>
+    <p>Recipes, brew ratios, temperatures and tips in BrewMaster are general guidance. Results depend on your beans, equipment, water and technique. Always take care with hot water, steam and hot equipment. Caffeine amounts are estimates. If you are sensitive to caffeine, please check with a doctor.</p>
   </div>
 
-  <div class="policy-block">
-    <h2><span class="num">07</span> Disclaimer of Warranties</h2>
-    <p>BrewMaster is provided "as is" without warranties of any kind, express or implied. We do not guarantee that the app will be error-free, uninterrupted, or meet your specific requirements. Coffee brewing results depend on your equipment, beans, water, and technique — we provide guidance but cannot guarantee outcomes.</p>
+  <div class="block">
+    <h2><span class="num">07</span>Prohibited Use</h2>
+    <p>You agree not to misuse BrewMaster. You may not try to reverse engineer, decompile or bypass any part of the app, including in-app purchases, or use the app for any unlawful purpose.</p>
   </div>
 
-  <div class="policy-block">
-    <h2><span class="num">08</span> Limitation of Liability</h2>
-    <p>To the maximum extent permitted by applicable law, BrewMaster shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of, or inability to use, BrewMaster.</p>
+  <div class="block">
+    <h2><span class="num">08</span>Intellectual Property</h2>
+    <p>All app content, including the design, graphics, text, recipes, guides and coffee content, belongs to chmays.app and is protected by intellectual property laws. The BrewMaster name and logo may not be used without permission.</p>
   </div>
 
-  <div class="policy-block">
-    <h2><span class="num">09</span> Updates &amp; Changes</h2>
-    <p>We reserve the right to update the app and these terms at any time. Significant changes will be communicated through the app or this page with an updated date. Continued use of BrewMaster after changes are posted means you accept the updated terms.</p>
+  <div class="block">
+    <h2><span class="num">09</span>Disclaimer of Warranties</h2>
+    <p>BrewMaster is provided "as is" without warranties of any kind. We do not guarantee that the app will always be available, error-free or suited to your specific needs.</p>
   </div>
 
-  <div class="policy-block">
-    <h2><span class="num">10</span> Governing Law</h2>
-    <p>These terms are governed by applicable law. Any disputes arising from these terms or the use of BrewMaster shall be resolved in accordance with applicable law in the jurisdiction where BrewMaster operates.</p>
+  <div class="block">
+    <h2><span class="num">10</span>Limitation of Liability</h2>
+    <p>To the maximum extent allowed by law, chmays.app is not liable for any indirect, incidental, special or consequential damages arising from your use of, or inability to use, BrewMaster.</p>
+  </div>
+
+  <div class="block">
+    <h2><span class="num">11</span>Changes to These Terms</h2>
+    <p>We may update the app and these terms at any time. Changes will be posted on this page with a new date. If you keep using BrewMaster after a change, it means you accept the updated terms.</p>
+  </div>
+
+  <div class="block">
+    <h2><span class="num">12</span>Governing Law</h2>
+    <p>These terms are governed by the laws of Denmark, without regard to conflict-of-law rules. This does not remove any rights you have under the consumer laws of the country where you live.</p>
+  </div>
+
+  <div class="block">
+    <h2><span class="num">13</span>Contact</h2>
+    <p>Questions about these terms? Email us at <a href="mailto:support@chmays.app">support@chmays.app</a>.</p>
   </div>
 
 </main>
 
 <footer>
-  <span class="footer-brand">BrewMaster</span>
-  <ul class="footer-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="privacy.html">Privacy Policy</a></li>
-    <li><a href="mailto:support@chmays.app">Support</a></li>
-  </ul>
-  <p class="footer-copy">© 2026 BrewMaster · All rights reserved.</p>
+  <div class="wrap foot">
+    <a class="brand" href="index.html"><img src="BrewMaster.jpg" alt=""><span>BrewMaster</span></a>
+    <ul class="foot-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="privacy.html">Privacy Policy</a></li>
+      <li><a href="mailto:support@chmays.app">Support</a></li>
+    </ul>
+    <p class="copy">© 2026 BrewMaster by chmays.app · All rights reserved.</p>
+  </div>
 </footer>
 
 </body>
